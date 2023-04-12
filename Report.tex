@@ -1,0 +1,269 @@
+% Author: Joseph Rowell
+
+% Version: 3.0
+% This work is licensed under a Creative Commons Attribution 4.0 International License. Please acknowledge accordingly.
+
+% VISIT https://imagestore.ucl.ac.uk/ FOR UCL BANNERS OF DIFFERENT SUBJECT COLOURS
+% Change \YourName command in Packages 
+\documentclass[12pt, a4paper]{report}
+\input{Packages.tex}
+\hypersetup{pdftitle = Project Report, pdfauthor = {First Last}, pdfstartview=FitH, pdfkeywords = essay, pdfpagemode = FullScreen, colorlinks, anchorcolor = black, citecolor = blue, urlcolor=blue, filecolor=green, linkcolor = black, plainpages = false}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\pagestyle{fancy}
+\rhead{}
+\chead{}
+\lhead{University College London}
+\lfoot{\date{}}
+\cfoot{}
+\rfoot{\thepage}
+% Top and Bottom Line Rules
+
+\renewcommand{\headrulewidth}{0.4pt} %0.4pt
+\renewcommand{\footrulewidth}{0.4pt}
+\fancyheadoffset{8pt}
+\fancyfootoffset{8pt}
+% Line spacing
+\renewcommand{\baselinestretch}{1.5} %1.5
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\input{glossary}
+
+%Sorted list
+\newcommand{\sortitem}[1]{%
+  \DTLnewrow{list}% Create a new entry
+  \DTLnewdbentry{list}{description}{#1}% Add entry as description
+}
+\newenvironment{sortedlist}{%
+  \DTLifdbexists{list}{\DTLcleardb{list}}{\DTLnewdb{list}}% Create new/discard old list
+}{%
+  \DTLsort{description}{list}% Sort list
+  \begin{itemize}%
+    \DTLforeach*{list}{\theDesc=description}{%
+      \item \theDesc}% Print each item
+  \end{itemize}%
+}
+\date{}
+
+\title{Interesting Scientific Title}
+\author{\\ \Large{\YourName}
+\\ Supervisors: Supervisor Name
+\\ Faculty of Engineering
+\\ Department of Computer Science
+\\ 
+\\
+\\ University College London
+\\
+A Project Report Presented in Partial Fulfillment of the Degree \\ \textit{MSc Your Degree}
+\\ \\
+September 2022
+}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+%Adjust logo positions here
+% \AddToShipoutPicture*{\parbox[t][\paperheight][t]{\paperwidth}{%
+%           \includegraphics[width=\paperwidth]{\BackgroundPicturea{Logos/ucl_long%_logo.png}{3in}{3in}}
+%           }}
+% \AddToShipoutPicture*{\centering\BackgroundPictureb{Logos/Bentham2011_065_c623d.jpg}{3in}{3.7in}}
+\AddToShipoutPictureBG*{%
+  \AtPageUpperLeft{%
+    \raisebox{-\height}{%
+      \includegraphics[width=\paperwidth]{Logos/UCL_page_header.png}% Change this to no_dept if not Compsci
+    }}
+}
+\AddToShipoutPicture*{%
+      \parbox[t][\paperheight][t]{\paperwidth}{%
+          \includegraphics[width=\paperwidth]{Logos/UCL_page_footer.png}
+      }}
+      
+
+\thispagestyle{headings}
+\maketitle
+\FloatBarrier
+\pagenumbering{roman}
+
+\newpage
+\thispagestyle{empty}
+\begin{center}
+I dedicate this ...
+\end{center}
+
+\newpage
+\thispagestyle{empty}
+\vspace*{\fill}
+\begin{center}
+Copyright \copyright  \thinspace 2022 by \YourName \\ All Rights Reserved
+\end{center}
+\vspace*{\fill}
+\newpage
+\thispagestyle{empty}
+%\epigraph{The Book of Nature is written in the language of mathematics.}{--- \textup{Galileo Galilei}}
+\epigraph{The computer was born to solve problems that did not exist before.}{--- \textup{Bill Gates}}
+
+\thispagestyle{empty}
+\chapter*{Acknowledgements}
+I would like to express ...
+
+
+\thispagestyle{empty}
+\chapter*{Declaration}
+I, \YourName,  I declare that the thesis has been composed by myself and that the work has not be submitted for any other degree or professional qualification. I confirm that the work submitted is my own, except where work which has formed part of jointly-authored publications has been included and referenced. \\
+% \begin{figure}[H]
+% \includegraphics{Logos/signature.PNG}
+% \end{figure}
+% \vspace{-2cm}
+\noindent\begin{tabular}{ll}
+ & 01/01/22 \\
+\makebox[2.5in]{\hrulefill} & \makebox[2.5in]{\hrulefill}\\
+\textit{Signature} & \textit{Date}\\
+\end{tabular}
+
+\thispagestyle{empty}
+\begin{abstract}
+\lipsum[1-2]
+
+\keywords{Keyword1 - Keyword2 - Keyword3}
+% \vspace{-10mm} %To remove added white space after
+\end{abstract}
+
+\tableofcontents
+
+\thispagestyle{plain}
+\listoffigures
+\listoftables
+\lstlistoflistings
+\chapter*{List of Abbreviations}
+%\begin{abbreviations}
+%sort alphabetically 
+\begin{sortedlist}
+  \sortitem{CNN:     Convolutional Neural Network}
+  \sortitem{SLAM:    Simultaneous Localization And Mapping}
+  \sortitem{GNSS:    Global Navigation Satellite System}
+  \sortitem{KF:      Kalman Filter}
+  \sortitem{MAP:     Maximum a Posteriori}
+  \sortitem{ML:      Maximum Likelyhood}
+  \sortitem{IMU:     Inertial Measurement Unit}
+  \sortitem{UAV:     Unmanned Aerial Vehicle}
+  \sortitem{EKF:     Extended Kalman Filter}
+  \sortitem{GPS:     Global Positioning System}
+  \sortitem{SKLearn: SciKitLearn}
+  \sortitem{BA:      Bundle Adjustment}
+  \sortitem{ATE:     Absolute Trajectory Error}
+  \sortitem{RPE:     Relative Pose Error}
+  \sortitem{VO:      Visual Odometry}
+  \sortitem{VSLAM:   Visual Simultaneous Localisation and Mapping}
+  \sortitem{SfM:     Structure From Motion}
+ \end{sortedlist}
+%\end{abbreviations}
+\chapter{Project Plan}
+\label{Chap1}
+\section{Problem}
+\section{State-of-the-art}
+\section{Aims and Objectives}
+\section{Work Plan}
+\section{Deliverables}
+\section{Evaluation}
+\section{Project Timeline}
+%gantt
+\begin{figure}[ht]% h for here
+\centering
+\includegraphics[width=1\textwidth]{Figures/gantt_example.PNG}
+\end{figure}
+\chapter{Introduction and Background}
+\label{Chap2}
+\pagenumbering{arabic}
+\section{Motivation}
+\lipsum[1-3]
+\section{Aims}
+\lipsum[6]
+\section{Thesis Outline}
+The remainder of this report is organised as follows:
+\begin{itemize}
+    \item[] \textbf{Chapter} \hyperref[Chap2]{\textbf{2}} --- Introduces the related work and literature review performed in preparation for this project.
+    \item[] \textbf{Chapter} \hyperref[Chap3]{\textbf{3}} --- Introduces the methodology used in creating the feature distinction algorithm, including technical challenges encountered.
+    \item[] \textbf{Chapter} \hyperref[Chap4]{\textbf{4}} --- Introduces the Results and Analysis of the performed method.
+    \item[] \textbf{Chapter} \hyperref[Chap5]{\textbf{5}} --- Introduces the discussion of the results and possible future work.
+    \item[] \textbf{Chapter} \hyperref[Chap6]{\textbf{6}} --- Concludes and reflects on the project and its outcomes overall.
+\end{itemize}
+\section{Related Work}
+
+\chapter{Methodology}
+\label{Chap3}
+We can cite an article as an example \cite{DeepMindRef}. \lipsum[4-8]
+\begin{table}[H]
+   \caption{Example Table }\label{tab:exampleTable}
+   \small
+   \centering
+   \begin{tabular}{lccccr}
+   \toprule[\heavyrulewidth]\toprule[\heavyrulewidth]
+   \textbf{C1} & \textbf{C2} & \textbf{C3} & \textbf{C4}\\ 
+   \midrule
+\multirow{3}{*}{\textbf{Row}}& Val & Val & \textcolor{igreen}{GreenVal}\\
+   & & Val  & \textcolor{igreen}{Val}\\
+& &  & \textcolor{igreen}{Example}\\ \hdashline
+   \bottomrule[\heavyrulewidth] 
+   \end{tabular}
+\end{table}
+
+
+% Example Algorithm and pseudocode
+\begin{algorithm}
+\caption{An algorithm with caption}\label{alg:cap}
+\begin{algorithmic}
+\Require $n \geq 0$
+\Ensure $y = x^n$
+\State $y \gets 1$
+\State $X \gets x$
+\State $N \gets n$
+\While{$N \neq 0$}
+\If{$N$ is even}
+    \State $X \gets X \times X$
+    \State $N \gets \frac{N}{2}$  \Comment{This is a comment}
+\ElsIf{$N$ is odd}
+    \State $y \gets y \times X$
+    \State $N \gets N - 1$
+\EndIf
+\EndWhile
+\end{algorithmic}
+\end{algorithm}
+
+%Ensure to put system information, perhaps appendix
+%section{System Information}
+\chapter{Results and Analysis}
+\label{Chap4}
+\lipsum[1-4]
+\begin{figure}
+    \centering
+\begin{tikzpicture}
+    \draw[step=1cm,gray,very thin] (-1.9,-1.9) grid (5.9,5.9);
+    \draw[thick,->] (0,0) -- (4.5,0) node[anchor=north west] {x axis};
+    \draw[thick,->] (0,0) -- (0,4.5) node[anchor=south east] {y axis};
+    \draw (0,0) parabola (4,4);
+\end{tikzpicture}
+\caption{Example TikZ Figure}
+\end{figure}
+\chapter{Discussion}
+\label{Chap5}
+\lipsum[9-10]
+\footnote{Only now do I understand latex footnotes}
+
+\chapter{Conclusion}
+\label{Chap6}
+\Gls{latex} 
+\renewcommand{\bibname}{References}
+\bibliographystyle{ieeetr}
+\bibliography{Bibliography.bib}
+
+% APPENDIX
+\begin{appendices}
+\chapter{Appendix}
+\begin{lstlisting}[language = Matlab, caption= Listing Example]
+%Put code here
+\end{lstlisting}
+\end{appendices}
+
+% GLOSSARY
+\clearpage
+\printglossaries
+
+% INDEX?
+
+\end{document}
